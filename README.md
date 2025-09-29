@@ -9,20 +9,19 @@ ____      _       ____   ____                                  _
 | |       / _ \   | |  _  | |_) |  / _ \ | '_ \   / _ \  / _` | | __|
 | |___   / ___ \  | |_| | |  _ <  |  __/ | |_) | |  __/ | (_| | | |_
 \____| /_/   \_\  \____| |_| \_\  \___| | .__/   \___|  \__,_|  \__|
-                                        |_|
+                                       |_|
 
 CAG repeat pattern.
-     ************************************************
-    Gaurav Sablok, IBCH, PAN, Poznan, Poland,
-    https://portal.ichb.pl/laboratory-of-genomics/.
-    Email: gsablok@ibch.poznan.pl
     ************************************************
+    Gaurav Sablok,
+    Email: codeprog@icloud.com
+   ************************************************
 
 Usage: CAGrepeat-analyzer <COMMAND>
 
 Commands:
-cag-repeat       CAG repeat pattern
-help             Print this message or the help of the given subcommand(s)
+cag-repeat  CAG repeat pattern
+help        Print this message or the help of the given subcommand(s)
 
 Options:
 -h, --help     Print help
