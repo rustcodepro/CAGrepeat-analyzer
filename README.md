@@ -13,25 +13,27 @@ ____      _       ____   ____                                  _
                                        |_|
 
 CAG repeat pattern.
-    ************************************************
-    Gaurav Sablok,
-    Email: codeprog@icloud.com
-   ************************************************
+       ************************************************
+       Gaurav Sablok,
+       Email: codeprog@icloud.com
+      ************************************************
 
 Usage: CAGrepeat-analyzer <COMMAND>
 
 Commands:
-cag-repeat  CAG repeat pattern
-help        Print this message or the help of the given subcommand(s)
+  cag-repeat  CAG repeat pattern
+  cag-plot    plot the CAG
+  help        Print this message or the help of the given subcommand(s)
 
 Options:
--h, --help     Print help
--V, --version  Print version
+  -h, --help     Print help
+  -V, --version  Print version
 ```
 
 ```
 ./target/debug/CAGrepeat-analyzer cag-repeat ./test-files/test.fa
 ENST00000832824.1	4
+./target/debug/CAGrepeat-analyzer cag-plot ./test-files/test.fa outputnew
 ```
 
 Gaurav Sablok
