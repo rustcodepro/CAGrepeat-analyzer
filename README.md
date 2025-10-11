@@ -2,6 +2,7 @@
 - plot CAG reapeats human genome.
 - implemented a tokenizer approach with async to enable faster searches as compared to regex based.
 - profiling all CAG repeat across human genome or any other genome at async speed.
+- make sure you have matplotlib installed.
 
 ```
 ____      _       ____   ____                                  _
@@ -30,11 +31,8 @@ Options:
 
 ```
 ./target/debug/CAGrepeat-analyzer cag-repeat ./test-files/test.fa
-ENST00000832824.1	3
+ENST00000832824.1	4
 ```
 
-Gaurav Sablok \
-Instytut Chemii Bioorganicznej \
-Polskiej Akademii Nauk \
-ul. Noskowskiego 12/14 | 61-704, Poznań \
-Poland
+Gaurav Sablok
+codeprog@icloud.com

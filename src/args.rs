@@ -24,4 +24,11 @@ pub enum Commands {
         /// path to the output file
         outputfile: String,
     },
+    /// plot the CAG
+    CAGPlot {
+        /// path to the sequence file
+        filepath: String,
+        /// output file name
+        outputfile: String,
+    },
 }

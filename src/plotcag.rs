@@ -1,14 +1,14 @@
+use plotpy::{Barplot, Plot};
 use std::collections::HashMap;
 use std::error::Error;
 use std::fs::File;
-use std::io::Write;
 use std::io::{self, BufRead};
 use std::path::Path;
 
 /*
  Author Gaurav Sablok,
  Email: codeprog@icloud.com
- Date: 2025-8-29
+ Date: 2025-10-11
 */
 
 #[derive(Debug, Clone, PartialEq, PartialOrd)]
@@ -62,7 +62,7 @@ pub fn read_fasta<P: AsRef<Path>>(path: P) -> io::Result<HashMap<String, FastaRe
 }
 
 #[tokio::main]
-pub async fn caganalyzer(filepath: &str, outputfile: &str) -> Result<String, Box<dyn Error>> {
+pub async fn cagplotmatch(filepath: &str, outputfile: &str) -> Result<String, Box<dyn Error>> {
     let fasta_records = read_fasta(filepath)?;
     let mut genomevec: Vec<FastaStruct> = Vec::new();
     for (_id, record) in fasta_records {
@@ -71,7 +71,6 @@ pub async fn caganalyzer(filepath: &str, outputfile: &str) -> Result<String, Box
             seq: record.sequence.clone(),
         })
     }
-
     let mut tokensize: Vec<(String, Vec<&str>)> = Vec::new();
 
     for i in genomevec.iter() {
@@ -99,9 +98,27 @@ pub async fn caganalyzer(filepath: &str, outputfile: &str) -> Result<String, Box
         genomevec_vec.push(unitvector);
     }
 
-    let mut filewrite = File::create(outputfile).expect("file not found");
+    let mut plottingnames: Vec<&str> = Vec::new();
+    let mut plottingvalues: Vec<_> = Vec::new();
+
     for i in genomevec_vec.iter() {
-        writeln!(filewrite, "{}\t{}", i.0, i.1).expect("file not present");
+        plottingnames.push(i.0.as_str());
+        plottingvalues.push(i.1);
     }
+
+    let mut bar = Barplot::new();
+    bar.set_horizontal(true)
+        .set_with_text("edge")
+        .draw_with_str(&plottingnames.as_slice(), &plottingvalues);
+
+    let mut plot = Plot::new();
+    plot.set_inv_y()
+        .add(&bar)
+        .set_title("CAG Frequency")
+        .set_label_x("Variant Count");
+
+    let outputname = format!("{}.{}", outputfile, "svg");
+    plot.save(&outputname)?;
+
     Ok("The cag repeats have been analyzed".to_string())
 }

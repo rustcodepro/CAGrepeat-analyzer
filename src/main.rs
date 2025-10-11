@@ -1,9 +1,10 @@
 mod args;
 mod cag;
-
+mod plotcag;
 use crate::args::CommandParse;
 use crate::args::Commands;
 use crate::cag::caganalyzer;
+use crate::plotcag::cagplotmatch;
 use clap::Parser;
 use figlet_rs::FIGfont;
 
@@ -25,6 +26,13 @@ fn main() {
         } => {
             let command = caganalyzer(filepath, outputfile).unwrap();
             println!("The command has been finished:{}", command);
+        }
+        Commands::CAGPlot {
+            filepath,
+            outputfile,
+        } => {
+            let command = cagplotmatch(filepath, outputfile).unwrap();
+            println!("The command has completed: {}", command);
         }
     }
 }
