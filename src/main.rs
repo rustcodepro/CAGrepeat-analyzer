@@ -9,9 +9,8 @@ use clap::Parser;
 use figlet_rs::FIGfont;
 
 /*
- Author Gaurav Sablok,
- Email: codeprog@icloud.com
- Date: 2025-8-29
+Gaurav Sablok,
+codeprog@icloud.com
 */
 
 fn main() {
@@ -23,16 +22,30 @@ fn main() {
         Commands::CAGRepeat {
             filepath,
             outputfile,
+            thread,
         } => {
-            let command = caganalyzer(filepath, outputfile).unwrap();
-            println!("The command has been finished:{}", command);
+            let pool = rayon::ThreadPoolBuilder::new()
+                .num_threads(thread.parse::<usize>().unwrap())
+                .build()
+                .unwrap();
+            pool.install(|| {
+                let command = caganalyzer(filepath, outputfile).unwrap();
+                println!("The command has been finished:{}", command);
+            });
         }
         Commands::CAGPlot {
             filepath,
             outputfile,
+            thread,
         } => {
-            let command = cagplotmatch(filepath, outputfile).unwrap();
-            println!("The command has completed: {}", command);
+            let pool = rayon::ThreadPoolBuilder::new()
+                .num_threads(thread.parse::<usize>().unwrap())
+                .build()
+                .unwrap();
+            pool.install(|| {
+                let command = cagplotmatch(filepath, outputfile).unwrap();
+                println!("The command has completed: {}", command);
+            });
         }
     }
 }

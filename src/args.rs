@@ -23,6 +23,8 @@ pub enum Commands {
         filepath: String,
         /// path to the output file
         outputfile: String,
+        /// threads for the analysis
+        thread: String,
     },
     /// plot the CAG
     CAGPlot {
@@ -30,5 +32,7 @@ pub enum Commands {
         filepath: String,
         /// output file name
         outputfile: String,
+        /// threads for the analysis
+        thread: String,
     },
 }

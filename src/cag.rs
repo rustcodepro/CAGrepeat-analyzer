@@ -6,9 +6,8 @@ use std::io::{self, BufRead};
 use std::path::Path;
 
 /*
- Author Gaurav Sablok,
- Email: codeprog@icloud.com
- Date: 2025-8-29
+Gaurav Sablok,
+codeprog@icloud.com
 */
 
 #[derive(Debug, Clone, PartialEq, PartialOrd)]
@@ -61,8 +60,7 @@ pub fn read_fasta<P: AsRef<Path>>(path: P) -> io::Result<HashMap<String, FastaRe
     Ok(records)
 }
 
-#[tokio::main]
-pub async fn caganalyzer(filepath: &str, outputfile: &str) -> Result<String, Box<dyn Error>> {
+pub fn caganalyzer(filepath: &str, outputfile: &str) -> Result<String, Box<dyn Error>> {
     let fasta_records = read_fasta(filepath)?;
     let mut genomevec: Vec<FastaStruct> = Vec::new();
     for (_id, record) in fasta_records {

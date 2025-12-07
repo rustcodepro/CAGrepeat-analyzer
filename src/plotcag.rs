@@ -61,8 +61,7 @@ pub fn read_fasta<P: AsRef<Path>>(path: P) -> io::Result<HashMap<String, FastaRe
     Ok(records)
 }
 
-#[tokio::main]
-pub async fn cagplotmatch(filepath: &str, outputfile: &str) -> Result<String, Box<dyn Error>> {
+pub fn cagplotmatch(filepath: &str, outputfile: &str) -> Result<String, Box<dyn Error>> {
     let fasta_records = read_fasta(filepath)?;
     let mut genomevec: Vec<FastaStruct> = Vec::new();
     for (_id, record) in fasta_records {
